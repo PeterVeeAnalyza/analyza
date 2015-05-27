@@ -12,7 +12,7 @@ list($_b, $_g, $_l) = $template->initialize('08c86f828d', 'html')
 // block content
 //
 if (!function_exists($_b->blocks['content'][] = '_lbe5af369e6f_content')) { function _lbe5af369e6f_content($_b, $_args) { foreach ($_args as $__k => $__v) $$__k = $__v
-?>s kým hovorímmmmdwdwd
+?>no test s kym hovorím
 <?php
 }}
 
