@@ -20,8 +20,43 @@ class RouterFactory
 	public static function createRouter()
 	{
 		$router = new RouteList();
-		$router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
-		return $router;
+		
+                if (PHP_SAPI === 'cli') {
+            $router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
+        } else {
+            
+            
+            $router[] = new Route('admin/<presenter>/<action>/<id>', array(
+                'module' => 'Admin',
+                'presenter' => 'Homepage',
+                'action' => 'default',
+                'id' => NULL
+            ));
+            
+            
+            $router[] = new Route('client/<presenter>/<action>/<id>', array(
+                'module' => 'Client',
+                'presenter' => 'Homepage',
+                'action' => 'default',
+                'id' => NULL
+            ));
+            
+
+            $router[] = new Route('<presenter>/<action>/<id>', array(
+                'module' => 'Front',
+                'presenter' => 'Homepage',
+                'action' => 'default',
+                'id' => NULL
+            ));
+
+            $router[] = new Route('index.php', array(
+                'module' => 'Front',
+                'presenter' => 'Homepage',
+                'action' => 'default'
+                    ), Route::ONE_WAY);
+        }
+                
+                return $router;
 	}
 
 }
